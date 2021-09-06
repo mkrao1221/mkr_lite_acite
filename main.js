@@ -8,7 +8,7 @@ let loadImage=(src,callback)=>{
 let imagePath=(frameNumber,animation)=>{
 	return "images/"+animation+"/"+frameNumber+".png";
 	}
-let frames={
+let frms={
 	idle:[1,2,3,4,5,6,7,8],
 	kick:[1,2,3,4,5,6,7],
 	punch:[1,2,3,4,5,6,7],
@@ -17,7 +17,7 @@ let loadImages=(callback)=>{
 	let images={idle:[],kick:[],punch:[]};
 	let imagesToLoad=0;
 	["idle","kick","punch"].forEach((animation)=>{
-		let animationFrames=frames[animation];	
+		let animationFrames=frms[animation];	
         imagesToLoad=imagesToLoad + animationFrames.length;
 		
 		animationFrames.forEach((frameNumber)=>{
@@ -42,7 +42,7 @@ let animate=(ctx,images,animation,callback)=>{
 			ctx.drawImage(image,0,0,500,500);
 			},index*100);
 		});
-		setTimeout(callback,images[animation].length*100);
+		setTimeout(callback,images[animation].length*150);
 };
 loadImages((images)=>{
 	
@@ -59,10 +59,10 @@ loadImages((images)=>{
 		animate(ctx,images,selectedAnimation,aux);
 	}
 	aux();
-	document.getElementById("kick").onclick=()=>{
+	document.getElementById("k").onclick=()=>{
 		queuedAnimation.push("kick");
 	};
-	document.getElementById("punch").onclick=()=>{
+	document.getElementById("p").onclick=()=>{
 		queuedAnimation.push("punch");
 	};
 	document.addEventListener("keyup",(event)=>{
